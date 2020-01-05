@@ -80,34 +80,32 @@ app.post('/webhook', async (req, res) => {
     dataObject = event.data.object;
     eventType = event.type;
 
-    // Handle the event
-    // Review important events for Billing webhooks
-    // https://stripe.com/docs/billing/webhooks
-    // Remove comment to see the various objects sent for this sample
+    // Handle the Webhook event ()
+
     switch (event.type) {
       case 'customer.created':
-        // console.log(dataObject);
+         console.log(dataObject);
         break;
       case 'customer.updated':
-        // console.log(dataObject);
+         console.log(dataObject);
         break;
       case 'invoice.upcoming':
-        // console.log(dataObject);
+         console.log(dataObject);
         break;
       case 'invoice.created':
-        // console.log(dataObject);
+         console.log(dataObject);
         break;
       case 'invoice.finalized':
-        // console.log(dataObject);
+        console.log(dataObject);
         break;
       case 'invoice.payment_succeeded':
-        // console.log(dataObject);
+         console.log(dataObject);
         break;
       case 'invoice.payment_failed':
-        // console.log(dataObject);
+         console.log(dataObject);
         break;
       case 'customer.subscription.created':
-        // console.log(dataObject);
+         console.log(dataObject);
         break;
       // ... handle other event types
       default:
