@@ -53,14 +53,17 @@ function showCardError(error) {
 
 var createPaymentMethodAndCustomer = function(stripe, card) {
   var cardholderEmail = document.querySelector('#email').value;
+  var cardholderName = document.querySelector('#name').value;
+console.log(card);
   stripe
     .createPaymentMethod('card', card, {
       billing_details: {
+        name : cardholderName,
         email : cardholderEmail,
-
+        
 //As per Indian regulations, export transactions require a customer name and address.
+//so we can take the adress using location api
 
-        name : "Sharoon" ,
         address : {
          // "city": "null",
           "country": "US",
@@ -79,6 +82,8 @@ var createPaymentMethodAndCustomer = function(stripe, card) {
         showCardError(result.error);
       } else {
         createCustomer(result.paymentMethod.id, cardholderEmail);
+
+        console.log(result.paymentMethod.id);
       }
     });
 };
@@ -103,6 +108,7 @@ async function createCustomer(paymentMethod, cardholderEmail) {
 }
 
 function handleSubscription(subscription) {
+  console.log(subscription);
   const { latest_invoice } = subscription;
   const { payment_intent } = latest_invoice;
 
